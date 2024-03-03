@@ -67,7 +67,7 @@ def find_config_file() -> Path:
     """Locate the configuration file."""
     if CONFIG_FILE_PATH.is_file():
         return CONFIG_FILE_PATH
-    raise Exception(f"Config not found at {CONFIG_FILE_PATH!r}")
+    raise ValueError(f"Config not found at {CONFIG_FILE_PATH!r}")
 
 
 def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
@@ -77,7 +77,7 @@ def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
         cfg_path = find_config_file()
 
     if cfg_path:
-        with open(cfg_path, "r") as conf_file:
+        with open(cfg_path, "r", encoding = 'utf-8') as conf_file:
             parsed_config = load(conf_file.read())
             return parsed_config
     raise OSError(f"Did not find config file at path: {cfg_path}")
