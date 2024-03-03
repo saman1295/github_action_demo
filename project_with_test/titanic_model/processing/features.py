@@ -38,7 +38,7 @@ class Mapper(BaseEstimator, TransformerMixin):
         self.variables = variables
         self.mappings = mappings
 
-    def fit(self, _: pd.DataFrame, _: pd.Series = None):
+    def fit(self, _: pd.DataFrame, __: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         return self
 
