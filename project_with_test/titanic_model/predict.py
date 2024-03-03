@@ -12,7 +12,7 @@ from titanic_model import __version__ as _version
 from titanic_model.config.core import config
 from titanic_model.pipeline import titanic_pipe
 from titanic_model.processing.data_manager import load_pipeline
-from titanic_model.processing.data_manager import pre_pipeline_preparation
+# from titanic_model.processing.data_manager import pre_pipeline_preparation
 from titanic_model.processing.validation import validate_inputs
 
 

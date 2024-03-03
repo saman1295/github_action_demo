@@ -1,5 +1,5 @@
-from typing import List
-import sys
+# from typing import List
+# import sys
 import pandas as pd
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -13,8 +13,9 @@ class embarkImputer(BaseEstimator, TransformerMixin):
             raise ValueError("variables should be a str")
 
         self.variables = variables
+        self.fill_value = None
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, X: pd.DataFrame, _: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         self.fill_value=X[self.variables].mode()[0]
         return self
@@ -37,7 +38,7 @@ class Mapper(BaseEstimator, TransformerMixin):
         self.variables = variables
         self.mappings = mappings
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, _: pd.DataFrame, _: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         return self
 
@@ -56,12 +57,14 @@ class age_col_tfr(BaseEstimator, TransformerMixin):
             raise ValueError('variables should be a str')
         
         self.variables = variables
+        self.age_avg =  None
+        self.age_std = None
 
-    def fit(self, X: pd.DataFrame, y: pd.Series=None):
-      self.age_avg = X[self.variables].mean()
-      self.age_std = X[self.variables].std()
+    def fit(self, X: pd.DataFrame, _: pd.Series=None):
+        self.age_avg = X[self.variables].mean()
+        self.age_std = X[self.variables].std()
         # we need this step to fit the sklearn pipeline
-      return self
+        return self
 
     def transform(self, X):
         np.random.seed(42)

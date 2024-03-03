@@ -4,9 +4,9 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-import pandas as pd
+# import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+# from sklearn.metrics import accuracy_score
 
 from titanic_model.config.core import config
 from titanic_model.pipeline import titanic_pipe
@@ -22,7 +22,7 @@ def run_training() -> None:
     data = load_dataset(file_name=config.app_config.training_data_file)
 
     # divide train and test
-    X_train, X_test, y_train, y_test = train_test_split(
+    X_train, _, y_train, _ = train_test_split(
         data[config.model_config.features],  # predictors
         data[config.model_config.target],
         test_size=config.model_config.test_size,
