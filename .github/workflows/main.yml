@@ -27,7 +27,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        if [ -f project_with_test/requirements/requirements.txt ]; then pip install -r roject_with_test/requirements/requirements.txt; fi
+        if [ -f project_with_test/requirements/requirements.txt ]; then pip install -r project_with_test/requirements/requirements.txt; fi
     - name: Code formatting with black
       run: |
         black project_with_test/titanic_model/*.py
